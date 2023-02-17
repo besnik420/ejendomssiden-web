@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import HeroSection from "./HomePage/HeroSection";
+import HeroSection from "./components/HomePage/HeroSection";
 
 function App() {
   return (
