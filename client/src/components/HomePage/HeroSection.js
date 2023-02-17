@@ -66,10 +66,10 @@ const HeroSection = () => {
         </div>
         <div className="absolute w-full top-1/2 transform -translate-y-1/2 flex justify-between items-start px-3">
           <button onClick={handleOnPrevClick}>
-            {/* Next */}
+            {/* Previous */}
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
-          {/* Previous */}
+          {/* Next */}
           <button onClick={handleOnNextClick}>
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
