@@ -2,7 +2,8 @@ import React from 'react'
 import Logo from "../HomePage/assets/HeroSection/Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faChevronDown, faChevronRight, faBarsStaggered, faUser } from "@fortawesome/free-solid-svg-icons";
-import RegisterImg from "../HomePage/assets/HeroSection/Register-Img.jpg";
+import Register from './Register';
+import Login from "./Login";
 
 const Navbar = () => {
   return (
@@ -64,6 +65,15 @@ const Navbar = () => {
           <li>
             <a className="active:bg-blue-600">Sælg</a>
           </li>
+          <li>
+            <a className="active:bg-blue-600">Fagfolk</a>
+          </li>
+          <li>
+            <a className="active:bg-blue-600">Om os</a>
+          </li>
+          <li>
+            <a className="active:bg-blue-600">Kontakt</a>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
@@ -78,79 +88,30 @@ const Navbar = () => {
             <li>
               <label
                 className="cursor-pointer active:bg-blue-600"
-                htmlFor="my-modal-3"
+                htmlFor="my-modal-Register"
               >
-                Register
+                Registrer
+              </label>
+            </li>
+            <li>
+              <label
+                className="cursor-pointer active:bg-blue-600"
+                htmlFor="my-modal-Login"
+              >
+                Login
               </label>
             </li>
           </ul>
         </div>
 
         {/* The button to open modal */}
-        <btn className="rounded-md py-2 px-4 text-white bg-blue-500 border-0 hover:bg-blue-600 cursor-pointer">
+        <button className="rounded-md py-2 px-4 text-white bg-blue-500 border-0 hover:bg-blue-600 cursor-pointer">
           Opret bolig
-        </btn>
+        </button>
       </div>
 
-      {/* Put this part before </body> tag */}
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box relative w-11/12 max-w-5xl p-0">
-          <label
-            htmlFor="my-modal-3"
-            className="btn btn-sm btn-circle absolute right-2 top-2 "
-          >
-            ✕
-          </label>
-          <div className="flex">
-            <div className="w-6/12">
-              <img src={RegisterImg} alt="" />
-            </div>
-            <div className="w-6/12 items-center">
-              <h3 className="text-lg font-bold text-center my-4">
-                Opret en konto
-              </h3>
-              <div className="flex flex-col justify-center items-center">
-                <input
-                  type="text"
-                  placeholder="Brugernavn"
-                  className="input input-bordered w-full max-w-xs mb-2"
-                />
-                <input
-                  type="text"
-                  placeholder="E-mail"
-                  className="input input-bordered w-full max-w-xs"
-                />
-                <input
-                  type="text"
-                  placeholder="Adgangskode"
-                  className="input input-bordered w-full max-w-xs my-2"
-                />
-                <input
-                  type="text"
-                  placeholder="Bekræft adgangskode"
-                  className="input input-bordered w-full max-w-xs"
-                />
-                <div className="form-control -ml-16">
-                  <label className="cursor-pointer label">
-                    <span className="label-text mx-1">
-                      Jeg er enig i: vilkår & betingelserne
-                    </span>
-                    <input
-                      type="checkbox"
-                      className="checkbox checkbox-info text-white"
-                    />
-                  </label>
-                </div>
-
-                <button className="rounded-md mt-6 p-2 text-white bg-blue-500 border-0 hover:bg-blue-600 w-7/12 ">
-                  Registrer
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Register />
+      <Login />
     </div>
   );
 }
