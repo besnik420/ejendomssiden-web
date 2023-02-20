@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterImg from "../HomePage/assets/HeroSection/Login-Img.jpg";
+import LoginImg from "../HomePage/assets/HeroSection/Login-Img.jpg";
 
 const Login = () => {
   return (
@@ -15,7 +15,7 @@ const Login = () => {
           </label>
           <div className="flex">
             <div className="w-6/12 ">
-              <img src={RegisterImg} alt="" />
+              <img src={LoginImg} alt="" />
             </div>
             <div className="w-6/12 flex flex-col justify-center items-center">
               <h3 className="text-lg font-bold text-center my-4">
