@@ -47,7 +47,6 @@ Route::post('/registerForm', function () {
     $username = request('username');
     $email = request('email');
     $password = request('password');
-    // Debugging statements
     // Process the form data here
     
     // Send a response back to the client
