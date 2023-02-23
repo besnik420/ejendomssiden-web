@@ -13,6 +13,7 @@ const Register = () => {
      console.log(formData);
     event.preventDefault();
     axios
+    //.post("http://localhost:8000/Register", formData)
       .post("http://localhost:8000/registerForm", formData)
       .then((response) => {
         console.log("Form submitted successfully");
