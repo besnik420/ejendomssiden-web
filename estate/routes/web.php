@@ -1,7 +1,12 @@
 <?php
 
-use App\Models\property;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\property;
+use Psy\Readline\Hoa\Console;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +37,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/',function(){
     return response()->json([
         'properties' => property::all(),
-        'users ' => User::all()
     ]);
 });
 
@@ -42,13 +46,26 @@ Route::get('/property/{propertyId}' , function($id){
     ]);
 })->where ('id', '0-9+');
 
+
+
+
 Route::post('/registerForm', function () {
     // Get the form data
     $username = request('username');
     $email = request('email');
     $password = request('password');
     // Process the form data here
+
+    // this registers a new user directly >
+    return User::create([
+        'name' => $username,
+        'email' => $email,
+        'password' => Hash::make($password),
+    ]);
+
     
+
+
     // Send a response back to the client
- return "Registration successful with email: " . $email;
+    return "Registration successful with email: " . $email;
 });
