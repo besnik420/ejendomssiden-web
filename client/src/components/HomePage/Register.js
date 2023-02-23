@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import RegisterImg from "../HomePage/assets/HeroSection/Register-Img.jpg";
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -8,9 +10,24 @@ const Register = () => {
     email: "",
     password: "",
   });
-
-  const handleSubmit = (event) => {    
-     console.log(formData);
+  const [passwordType, setPasswordType] = useState("password");
+  const [confirmPasswordType, setConfirmPasswordType] = useState("password");
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
+  const toggleConfirmPassword = () => {
+    if (confirmPasswordType === "password") {
+      setConfirmPasswordType("text");
+      return;
+    }
+    setConfirmPasswordType("password");
+  };
+  const handleSubmit = (event) => {
+    console.log(formData);
     event.preventDefault();
     axios
       .post("http://localhost:8000/registerForm", formData)
@@ -73,20 +90,45 @@ const Register = () => {
                     value={formData.email}
                     onChange={handleChange}
                   />
-                  <input
-                    type="password"
-                    placeholder="Adgangskode"
-                    name="password"
-                    className="input input-bordered w-full max-w-xs my-2"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="password"
-                    name="confirm-password"
-                    placeholder="Bekræft adgangskode"
-                    className="input input-bordered w-full max-w-xs"
-                  />
+                  <div className="w-full max-w-xs my-2">
+                    <label className="input-group">
+                      <input
+                        type={passwordType}
+                        placeholder="Adgangskode"
+                        name="password"
+                        className="input input-bordered w-full"
+                        value={formData.password}
+                        onChange={handleChange}
+                      />
+                      <button
+                        className="btn btn-ghost bg-slate-200"
+                        onClick={togglePassword}
+                      >
+                        {passwordType === "password" ? (
+                          <FontAwesomeIcon icon={faEyeSlash} />
+                        ) : (
+                          <FontAwesomeIcon icon={faEye} />
+                        )}
+                      </button>
+                    </label>
+                  </div>
+                  <div className="w-full max-w-xs">
+                    <label className="input-group">
+                      <input
+                        type={confirmPasswordType}
+                        name="confirm-password"
+                        placeholder="Bekræft adgangskode"
+                        className="input input-bordered w-full"
+                      />
+                      <button className="btn btn-ghost bg-slate-200" onClick={toggleConfirmPassword}>
+                        {confirmPasswordType === "password" ? (
+                          <FontAwesomeIcon icon={faEyeSlash} />
+                        ) : (
+                          <FontAwesomeIcon icon={faEye} />
+                        )}
+                      </button>
+                    </label>
+                  </div>
                   <div className="form-control -ml-16">
                     <label className="cursor-pointer label">
                       <span className="label-text mx-1">
