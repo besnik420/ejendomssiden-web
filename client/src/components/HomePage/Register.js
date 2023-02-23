@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import RegisterImg from "../HomePage/assets/HeroSection/Register-Img.jpg";
-import axios from 'axios';
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +30,6 @@ const Register = () => {
     console.log(formData);
     event.preventDefault();
     axios
-    //.post("http://localhost:8000/Register", formData)
       .post("http://localhost:8000/registerForm", formData)
       .then((response) => {
         console.log("Form submitted successfully");
@@ -44,12 +43,12 @@ const Register = () => {
         console.error("Error submitting form", error);
       });
   };
-   const handleChange = (event) => {
-     setFormData({
-       ...formData,
-       [event.target.name]: event.target.value,
-     });
-   };
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -121,7 +120,10 @@ const Register = () => {
                         placeholder="Bekræft adgangskode"
                         className="input input-bordered w-full"
                       />
-                      <button className="btn btn-ghost bg-slate-200" onClick={toggleConfirmPassword}>
+                      <button
+                        className="btn btn-ghost bg-slate-200"
+                        onClick={toggleConfirmPassword}
+                      >
                         {confirmPasswordType === "password" ? (
                           <FontAwesomeIcon icon={faEyeSlash} />
                         ) : (
