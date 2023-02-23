@@ -3,6 +3,8 @@ import RegisterImg from "../HomePage/assets/HeroSection/Register-Img.jpg";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [confirmPassword, setConfirmPassword] = useState();
   const [passwordType, setPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const togglePassword = () => {
@@ -27,8 +30,14 @@ const Register = () => {
     setConfirmPasswordType("password");
   };
   const handleSubmit = (event) => {
-    console.log(formData);
     event.preventDefault();
+    if(formData.password != confirmPassword)
+    {
+        toast.error("Passwords don't match. Please try again.", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        return;
+    }
     axios
       .post("http://localhost:8000/registerForm", formData)
       .then((response) => {
@@ -38,9 +47,16 @@ const Register = () => {
           email: "",
           password: "",
         });
+        setConfirmPassword("");
+        toast.success("Success! Your form has been submitted and saved.", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       })
       .catch((error) => {
         console.error("Error submitting form", error);
+         toast.error("Oops, something went wrong. Please try again.", {
+           position: toast.POSITION.TOP_RIGHT,
+         });
       });
   };
   const handleChange = (event) => {
@@ -48,6 +64,9 @@ const Register = () => {
       ...formData,
       [event.target.name]: event.target.value,
     });
+  };
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value)
   };
   return (
     <div>
@@ -78,6 +97,7 @@ const Register = () => {
                     type="text"
                     placeholder="Brugernavn"
                     name="username"
+                    required
                     className="input input-bordered w-full max-w-xs mb-2"
                     value={formData.username}
                     onChange={handleChange}
@@ -86,6 +106,7 @@ const Register = () => {
                     type="email"
                     placeholder="E-mail"
                     name="email"
+                    required
                     className="input input-bordered w-full max-w-xs"
                     value={formData.email}
                     onChange={handleChange}
@@ -96,12 +117,14 @@ const Register = () => {
                         type={passwordType}
                         placeholder="Adgangskode"
                         name="password"
+                        required
                         className="input input-bordered w-full"
                         value={formData.password}
                         onChange={handleChange}
                       />
                       <button
-                        className="btn btn-ghost bg-slate-200"
+                        type="button"
+                        className="btn btn-ghost bg-slate-200 "
                         onClick={togglePassword}
                       >
                         {passwordType === "password" ? (
@@ -119,8 +142,12 @@ const Register = () => {
                         name="confirm-password"
                         placeholder="Bekræft adgangskode"
                         className="input input-bordered w-full"
+                        value={confirmPassword}
+                        onChange={handleConfirmPasswordChange}
+                        required
                       />
                       <button
+                        type="button"
                         className="btn btn-ghost bg-slate-200"
                         onClick={toggleConfirmPassword}
                       >
