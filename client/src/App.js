@@ -1,24 +1,16 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+import React, {useEffect} from "react";
 import "./App.css";
-
+import HeroSection from "./components/HomePage/HeroSection";
+import Navbar from "./components/HomePage/Navbar";
+import { Helmet } from "react-helmet";
+import { ToastContainer, toast, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ToastContainer position="top-right" transition={Slide} />
+      <Navbar />
+      <HeroSection />
     </div>
   );
 }
