@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image1 from "../HomePage/assets/HeroSection/Building-1.jpg";
 import Image2 from "../HomePage/assets/HeroSection/Building-2.jpg";
 import Image3 from "../HomePage/assets/HeroSection/Building-3.jpg";
+import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -44,6 +45,8 @@ const HeroSection = () => {
       className="hero min-h-screen"
       style={{ backgroundImage: `url("${featuredImages[currentIndex]}")` }}
     >
+      <Navbar />
+      
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-lg">
