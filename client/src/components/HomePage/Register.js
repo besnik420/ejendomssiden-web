@@ -30,7 +30,7 @@ const Register = () => {
     console.log(formData);
     event.preventDefault();
     axios
-      .post("http://localhost:8000/registerForm", formData)
+      .post("http://localhost:8000/Register", formData)
       .then((response) => {
         console.log("Form submitted successfully");
         setFormData({
