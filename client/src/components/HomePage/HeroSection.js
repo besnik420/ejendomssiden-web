@@ -22,7 +22,7 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       handleOnNextClick();
-    }, 3000);
+    }, 5000);
     // Clean up function that is called before the component is unmounted
     return () => clearInterval(interval);
   }, [currentIndex]);
