@@ -7,7 +7,7 @@ import Login from "./Login";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-slate-100">
+    <div className="navbar absolute top-0 ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -15,7 +15,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-slate-200  rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-slate-200  rounded-box w-52 text-white"
           >
             <li>
               <a className="active:bg-blue-600">Køb</a>
@@ -44,7 +44,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 ">
+        <ul className="menu menu-horizontal px-1 text-white">
           <li>
             <a className="active:bg-blue-600">Køb</a>
           </li>
@@ -53,7 +53,7 @@ const Navbar = () => {
               Leje
               <FontAwesomeIcon icon={faChevronDown} />
             </a>
-            <ul className="p-2 bg-slate-200 mt-3">
+            <ul className="p-2 bg-slate-200 mt-3 text-black">
               <li>
                 <a className="active:bg-blue-600">Submenu 1</a>
               </li>
@@ -78,12 +78,12 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="dropdown dropdown-bottom dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost m-1">
+          <label tabIndex={0} className="btn btn-ghost m-1 text-white">
             <FontAwesomeIcon icon={faUser} />
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-black"
           >
             <li>
               <label

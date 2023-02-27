@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import RegisterImg from "../HomePage/assets/HeroSection/Register-Img.jpg";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,7 +31,7 @@ const Register = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(formData.password != confirmPassword)
+    if(formData.password !== confirmPassword)
     {
         toast.error("Passwords don't match. Please try again.", {
           position: toast.POSITION.TOP_RIGHT,

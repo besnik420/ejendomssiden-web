@@ -8,6 +8,8 @@ use Psy\Readline\Hoa\Console;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+
 
 
 Route::get('/', function () {
@@ -61,11 +62,12 @@ Route::post('/registerForm', function () {
         'name' => $username,
         'email' => $email,
         'password' => Hash::make($password),
-    ]);
-
-    
-
+    ]); 
 
     // Send a response back to the client
     return "Registration successful with email: " . $email;
 });
+
+
+
+
