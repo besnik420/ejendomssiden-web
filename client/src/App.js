@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 import Welcome from "./features/auth/Welcome";
 import RequireAuth from "./features/auth/RequireAuth";
+import PropertyMultiStepForm from "./components/PropertyForm/PropertyMultiStepForm";
 function App() {
   return (
     <div>
@@ -14,11 +15,9 @@ function App() {
         {/* public routes */}
         <Route path="/" element={<HeroSection />}>
           {/* protected routes */}
-          {/* <Route element={<RequireAuth />}>
-            <Route path="welcome" element={<Welcome />} />
-          </Route> */}
         </Route>
         <Route path="/welcome" element={<Welcome />} />
+        <Route path="/RegisterProperty" element={<PropertyMultiStepForm />} />
       </Routes>
     </div>
   );

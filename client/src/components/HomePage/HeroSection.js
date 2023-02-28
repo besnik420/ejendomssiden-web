@@ -10,6 +10,7 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
+
 const HeroSection = () => {
   // Initialize a variable count to keep track of the index of the current image
   let count = 0;
