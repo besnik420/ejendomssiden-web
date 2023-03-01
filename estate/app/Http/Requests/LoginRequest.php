@@ -21,6 +21,7 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
+           \Log::info('login request rules');
         return [
             'email'=>'required|email|exists:users,email',
             'password'=>'required',

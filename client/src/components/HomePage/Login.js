@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../features/auth/authSlice";
 import { useLoginMutation } from "../../features/auth/authApiSlice";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const userRef = useRef();
@@ -40,19 +41,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userData = await login({ user, pwd }).unwrap();
+      const userData = await login({ email:user, password:pwd }).unwrap();
       dispatch(setCredentials({ user, token: userData.token }));
-      localStorage.setItem("token", userData.token);
+     Cookies.set("token", userData.token);
       setUser("");
       setPwd("");
       navigate("/welcome");
       console.log("Logged in successfully");
     } catch (err) {
-      if (!err.response) {
+      if (!err?.originalStatus) {
+        // isLoading: true until timeout occurs
         setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing username or password");
-      } else if (err.response?.status === 401) {
+      } else if (err.originalStatus === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.originalStatus === 401) {
         setErrMsg("Unauthorized");
       } else {
         setErrMsg("Login Failed");

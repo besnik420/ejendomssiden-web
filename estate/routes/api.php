@@ -35,3 +35,4 @@ Route::post('/register',[AuthController::class, 'Register']);
 Route::post('/login',[AuthController::class, 'login']);
 
 //Route::resource('/property',propertiesController::class);
+
