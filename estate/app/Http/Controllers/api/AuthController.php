@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller{
 
     public function Login(LoginRequest $request){
+          \Log::info('entered auth controller');
+          \Log::info($request);
         $creds = $request->validated();
         if(!Auth::attempt($creds)){
             return response(['message' =>'email or password is wrong']);

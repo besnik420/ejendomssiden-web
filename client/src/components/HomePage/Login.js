@@ -40,8 +40,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userData = await login({ user, pwd }).unwrap();
+      const userData = await login({ email:user, password:pwd }).unwrap();
       dispatch(setCredentials({ user, token: userData.token }));
+      console.log(userData.token);
       localStorage.setItem("token", userData.token);
       setUser("");
       setPwd("");
