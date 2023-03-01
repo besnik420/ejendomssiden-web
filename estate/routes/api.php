@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::options('/{any}', function () {
-         \Log::info('any routes');
+         //Log::info('any routes');
     return response('', 200)
         ->header('Access-Control-Allow-Origin', 'http://localhost:3000')
         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
@@ -34,5 +34,7 @@ Route::post('/register',[AuthController::class, 'Register']);
 
 Route::post('/login',[AuthController::class, 'login']);
 
-//Route::resource('/property',propertiesController::class);
+Route::get('/refresh',[AuthController::class,'refresh']);
+
+Route::resource('/property',propertiesController::class);
 

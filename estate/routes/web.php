@@ -27,7 +27,7 @@ use Illuminate\Http\Request;
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
+/**
 Route::get('/',function(){
     return response()->json([
         'properties' => property::all(),
@@ -60,7 +60,7 @@ Route::post('/registerForm', function () {
     // Send a response back to the client
     return "Registration successful with email: " . $email;
 });
-
+ */
 
 
 

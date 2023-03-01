@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\property;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -12,9 +13,9 @@ class propertiesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index()
     {
-        //
+        return property::all();
     }
 
     /**
@@ -38,7 +39,6 @@ class propertiesController extends Controller
      */
     public function show(string $id){
         //
-        return 'show all';
     }
 
     /**
