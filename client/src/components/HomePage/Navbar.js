@@ -116,12 +116,12 @@ const Navbar = () => {
               </li>
             ) : (
               <li>
-                <button
+                <label
                   className="cursor-pointer active:bg-blue-600"
                   htmlFor="my-modal-Login"
                 >
                   Login
-                </button>
+                </label>
               </li>
             )}
           </ul>
