@@ -12,10 +12,14 @@ const steps = [
   },
   {
     step: 3,
-    title: "Description",
+    title: "Details",
   },
   {
     step: 4,
+    title: "Description",
+  },
+  {
+    step: 5,
     title: "Media",
   },
 ];

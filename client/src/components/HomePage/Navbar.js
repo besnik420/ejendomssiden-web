@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faChevronDown, faChevronRight, faBarsStaggered, faUser } from "@fortawesome/free-solid-svg-icons";
 import Register from './Register';
 import Login from "./Login";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -35,7 +36,9 @@ const Navbar = () => {
               </ul>
             </li>
             <li>
-              <a className="active:bg-blue-600">Sælg</a>
+              <Link className="active:bg-blue-600" to="/RegisterProperty">
+                Sælg
+              </Link>
             </li>
           </ul>
         </div>
@@ -63,7 +66,9 @@ const Navbar = () => {
             </ul>
           </li>
           <li>
-            <a className="active:bg-blue-600">Sælg</a>
+            <Link className="active:bg-blue-600" to="/RegisterProperty">
+              Sælg
+            </Link>
           </li>
           <li>
             <a className="active:bg-blue-600">Fagfolk</a>
