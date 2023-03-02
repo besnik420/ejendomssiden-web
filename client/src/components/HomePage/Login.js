@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../features/auth/authSlice";
 import { useLoginMutation } from "../../features/auth/authApiSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 
 const Login = () => {
@@ -63,7 +65,10 @@ const Login = () => {
     }
   };
   const content = isLoading ? (
-    <h1>Loading...</h1>
+    // toast.error("Loading", {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //     })
+    <span></span>
   ) : (
     <div>
       <input type="checkbox" id="my-modal-Login" className="modal-toggle" />

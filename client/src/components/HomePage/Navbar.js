@@ -8,6 +8,7 @@ import Login from "./Login";
 import Cookies from "js-cookie";
 import { logOut } from '../../features/auth/authSlice';
 
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const cookie = Cookies.get("token");
@@ -46,7 +47,9 @@ const Navbar = () => {
               </ul>
             </li>
             <li>
-              <a className="active:bg-blue-600">Sælg</a>
+              <Link className="active:bg-blue-600" to="/RegisterProperty">
+                Sælg
+              </Link>
             </li>
           </ul>
         </div>
@@ -74,7 +77,9 @@ const Navbar = () => {
             </ul>
           </li>
           <li>
-            <a className="active:bg-blue-600">Sælg</a>
+            <Link className="active:bg-blue-600" to="/RegisterProperty">
+              Sælg
+            </Link>
           </li>
           <li>
             <a className="active:bg-blue-600">Fagfolk</a>
