@@ -20,7 +20,6 @@ const steps = [
   },
 ];
 const Sidebar = ({ currentStep, handleNextStep }) => {
-  console.log("Current step: " + currentStep)
   return (
     <div>
       <aside className="bg-sidebar-image-mobile h-[13rem] lg:h-[32rem] bg-cover bg-no-repeat lg:rounded-lg lg:bg-sidebar-image-desktop">
@@ -28,7 +27,7 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
           <ol className="flex justify-center pt-8 gap-4 lg:flex-col lg:w-60 lg:mx-autor">
             {steps.map((step) => (
               <li
-                className="flex gap-4 lg:ml-8 items-center bg-semi-transparent-grayish-color pl-4 rounded-md"
+                className="flex gap-4 lg:ml-8 items-center lg:bg-semi-transparent-grayish-color lg:pl-4 rounded-md"
                 key={step.step}
               >
                 <button

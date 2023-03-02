@@ -1,51 +1,44 @@
 import React from 'react'
-import clsx from "clsx";
 import Input from './Input';
 
-export const Address = ({
-	userInfo,
-	updateUserInfo,
-	showRequired,
-}) => {
-	const handlePersonalInfo = (
-		event,
-		key
-	) => {
-		const updatedUserInfo = { ...userInfo };
-		updatedUserInfo[key] = event.currentTarget.value;
-		updateUserInfo(updatedUserInfo);
-	};
+export const Address = () => {
 
 	return (
     <section className="flex flex-col gap-4 w-full">
       <h2>The location of the ad</h2>
       <p>Please provide your address, region and territory.</p>
-      <Input
-        label="Address"
-        placeholder="e.g. Stephen King"
-        showRequired={showRequired && !userInfo.name}
-        value={userInfo.name}
-        onChange={(e) => handlePersonalInfo(e, "name")}
-      />
+      <div className="flex justify-between gap-x-3">
+        <Input
+          label="Address"
+          placeholder="e.g. Stephen King"
+        />
 
-      <Input
-        label="Region"
-        type="email"
-        placeholder="e.g. Region of Southern Denmark"
-        showRequired={
-          showRequired && (!userInfo.email || !userInfo.email.includes("@"))
-        }
-        value={userInfo.email}
-        onChange={(e) => handlePersonalInfo(e, "email")}
-      />
-
-      <Input
-        label="Territory"
-        placeholder="e.g. ..."
-        showRequired={showRequired && !userInfo.phone}
-        value={userInfo.phone}
-        onChange={(e) => handlePersonalInfo(e, "phone")}
-      />
+        <Input
+          label="Region"
+          type="email"
+          placeholder="e.g. Region of Southern Denmark"
+        />
+      </div>
+      <div className="flex justify-between gap-x-3">
+        <Input
+          label="Town"
+          placeholder="e.g. ..."
+        />
+        <Input
+          label="Territory"
+          placeholder="e.g. ..."
+        />
+      </div>
+      <div className="flex justify-between gap-x-3">
+        <Input
+          label="Zip Code"
+          placeholder="e.g. ..."
+        />
+        <Input
+          label="Country"
+          placeholder="e.g. ..."
+        />
+      </div>
     </section>
   );
 };

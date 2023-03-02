@@ -11,7 +11,7 @@ export const Input = ({
   required = true,
 }) => {
   return (
-    <div className="flex flex-col font-medium">
+    <div className="flex flex-col font-medium w-full">
       <span className="inline-flex justify-between">
         <label htmlFor={label} className="text-sm text-primary-marine-blue ">
           {label}
@@ -34,7 +34,6 @@ export const Input = ({
             "ring-1 ring-primary-starberry-red"
         )}
         placeholder={placeholder}
-        onChange={(e) => onChange(e)}
       />
     </div>
   );

@@ -17,9 +17,9 @@ module.exports = {
       },
       backgroundImage: {
         "sidebar-image-mobile":
-          "url('../src/components/PropertyForm/assets/bg-sidebar-mobile.svg')",
+          "url('../src/components/PropertyForm/assets/alessio-soggetti-cfKC0UOZHJo-unsplash.jpg')",
         "sidebar-image-desktop":
-          "url('../src/components/PropertyForm/assets/bg-sidebar-desktop.jpg')",
+          "url('../src/components/PropertyForm/assets/joel-filipe-jU9VAZDGMzs-unsplash.jpg')",
       },
     },
   },

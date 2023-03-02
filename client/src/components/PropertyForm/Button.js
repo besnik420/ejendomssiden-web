@@ -10,7 +10,7 @@ export const Button = ({
 }) => {
   const typeClasses =
     type === "primary"
-      ? "bg-primary-purplish-blue text-white hover:opacity-70"
+      ? " hover:opacity-70"
       : type === "secondary"
       ? "bg-primary-marine-blue text-white hover:opacity-70"
       : "bg-transparent text-neutral-cool-gray ";
