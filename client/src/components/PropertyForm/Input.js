@@ -4,16 +4,17 @@ import clsx from "clsx";
 export const Input = ({
   label,
   value,
+  name,
   type = "text",
   placeholder = "Enter a value",
-  onChange,
   showRequired = false,
   required = true,
+  onChange,
 }) => {
   return (
     <div className="flex flex-col font-medium w-full">
       <span className="inline-flex justify-between">
-        <label htmlFor={label} className="text-sm text-primary-marine-blue ">
+        <label htmlFor={label} className="text-sm text-primary-marine-blue mt-2">
           {label}
         </label>
         {required && showRequired && (
@@ -24,16 +25,14 @@ export const Input = ({
       </span>
       <input
         type={type}
-        id={label}
-        value={value}
         className={clsx(
-          "border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all focus:outline-none focus:ring-1 focus:ring-primary-purplish-blue",
-          showRequired &&
-            required &&
-            !value &&
-            "ring-1 ring-primary-starberry-red"
+          "border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all focus:outline-none focus:ring-1 focus:ring-bg-blue-100",
+          showRequired && required && "ring-1 ring-primary-starberry-red"
         )}
         placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+        name={name}
       />
     </div>
   );

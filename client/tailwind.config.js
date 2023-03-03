@@ -19,7 +19,7 @@ module.exports = {
         "sidebar-image-mobile":
           "url('../src/components/PropertyForm/assets/alessio-soggetti-cfKC0UOZHJo-unsplash.jpg')",
         "sidebar-image-desktop":
-          "url('../src/components/PropertyForm/assets/joel-filipe-jU9VAZDGMzs-unsplash.jpg')",
+          "url('../src/components/PropertyForm/assets/joe-beck-5rsLoz7vrng-unsplash.jpg')",
       },
     },
   },

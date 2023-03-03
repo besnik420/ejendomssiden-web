@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from "react";
 import clsx from "clsx";
+import { FormContext } from "./PropertyMultiStepForm";
 
 const steps = [
   {
@@ -23,7 +24,8 @@ const steps = [
     title: "Media",
   },
 ];
-const Sidebar = ({ currentStep, handleNextStep }) => {
+const Sidebar = () => {
+  const { activeStepIndex, setActiveStepIndex } = useContext(FormContext);
   return (
     <div>
       <aside className="bg-sidebar-image-mobile h-[13rem] lg:h-[32rem] bg-cover bg-no-repeat lg:rounded-lg lg:bg-sidebar-image-desktop">
@@ -37,11 +39,11 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
                 <button
                   className={clsx(
                     "px-3 py-2 border border-white inline-flex rounded-full leading-none font-medium w-min h-min transition-colors duration-[400ms]",
-                    currentStep === step.step
-                      ? "bg-primary-light-blue text-primary-marine-blue border-primary-light-blue"
+                    activeStepIndex === step.step
+                      ? "bg-slate-50 text-primary-marine-blue border-primary-light-blue"
                       : "text-white"
                   )}
-                  onClick={() => handleNextStep(step.step)}
+                  onClick={() => setActiveStepIndex(activeStepIndex + 1)}
                 >
                   {step.step}
                 </button>
@@ -49,7 +51,7 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
                   <p
                     className={clsx(
                       "font-normal",
-                      currentStep === step.step
+                      activeStepIndex === step.step
                         ? "text-primary-marine-blue"
                         : "text-white"
                     )}
@@ -59,7 +61,7 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
                   <span
                     className={clsx(
                       "font-bold",
-                      currentStep === step.step
+                      activeStepIndex === step.step
                         ? "text-primary-marine-blue"
                         : "text-white"
                     )}
@@ -74,6 +76,6 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
       </aside>
     </div>
   );
-}
+};
 
-export default Sidebar
+export default Sidebar;
