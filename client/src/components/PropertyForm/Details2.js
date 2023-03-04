@@ -21,7 +21,6 @@ const Details2 = ({ onNextStep, handlePreviousStep }) => {
     onSubmit: (values) => {
       const data = { ...formData, ...values };
       setFormData(data);
-      alert(JSON.stringify(data, null, 2));
       onNextStep();
     },
   });
@@ -117,7 +116,7 @@ const Details2 = ({ onNextStep, handlePreviousStep }) => {
         </div>
         <menu className="flex justify-between">
           <li>
-            <Button className="bg-slate-100 " onClick={handlePreviousStep}>
+            <Button className="bg-slate-100" onClick={handlePreviousStep}>
               Go Back
             </Button>
           </li>

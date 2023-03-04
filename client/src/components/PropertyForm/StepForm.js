@@ -4,8 +4,8 @@ import Description from "./Description";
 import Details from "./Details";
 import Details2 from "./Details2";
 import Media from "./Media";
+import Sidebar from "./Sidebar";
 import { ThankYou } from "./ThankYou";
-import { FormContext } from "./PropertyMultiStepForm";
 
 function StepForm() {
  const [activeStepIndex, setActiveStepIndex] = useState(0);
@@ -39,6 +39,7 @@ function StepForm() {
         <Details2
           onNextStep={handleNextStep}
           activeStepIndex={activeStepIndex}
+          handlePreviousStep={handlePreviousStep}
         />
       );
       break;
@@ -67,7 +68,16 @@ function StepForm() {
       break;
   }
 
-  return stepContent;
+  return (
+    <>
+      <Sidebar onNextStep={handleNextStep} activeStepIndex={activeStepIndex} />
+      <div className="px-4 relative bg-neutral-magnolia  lg:bg-transparent lg:flex lg:flex-col lg:w-full ">
+        <div className="bg-neutral-alabaster px-6 py-9 rounded-[0.625rem] -translate-y-[4.5rem] flex w-full grow [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-primary-marine-blue [&_h3]:font-medium [&_h3]:text-primary-marine-blue lg:bg-transparent lg:translate-y-0 ">
+          {stepContent}
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default StepForm;

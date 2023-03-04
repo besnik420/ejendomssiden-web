@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { FormContext } from "./PropertyMultiStepForm";
 import { Button } from "./Button";
 
-export const Address = ({ onNextStep, activeStepIndex }) => {
+export const Address = ({ onNextStep }) => {
   const { formData, setFormData } = useContext(FormContext);
 
   const formik = useFormik({
@@ -19,7 +19,6 @@ export const Address = ({ onNextStep, activeStepIndex }) => {
     onSubmit: (values) => {
       const data = { ...formData, ...values };
       setFormData(data);
-      alert(JSON.stringify(data, null, 2));
       onNextStep();
     },
   });

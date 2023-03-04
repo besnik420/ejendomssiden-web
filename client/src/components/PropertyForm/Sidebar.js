@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import clsx from "clsx";
-import { FormContext } from "./PropertyMultiStepForm";
 
 const steps = [
   {
@@ -24,10 +23,9 @@ const steps = [
     title: "Media",
   },
 ];
-const Sidebar = () => {
-  const { activeStepIndex, setActiveStepIndex } = useContext(FormContext);
+const Sidebar = ({onNextStep, activeStepIndex}) => {
   return (
-    <div>
+    <>
       <aside className="bg-sidebar-image-mobile h-[13rem] lg:h-[32rem] bg-cover bg-no-repeat lg:rounded-lg lg:bg-sidebar-image-desktop">
         <nav>
           <ol className="flex justify-center pt-8 gap-4 lg:flex-col lg:w-60 lg:mx-autor">
@@ -39,11 +37,11 @@ const Sidebar = () => {
                 <button
                   className={clsx(
                     "px-3 py-2 border border-white inline-flex rounded-full leading-none font-medium w-min h-min transition-colors duration-[400ms]",
-                    activeStepIndex === step.step
+                    activeStepIndex === step.step - 1
                       ? "bg-slate-50 text-primary-marine-blue border-primary-light-blue"
                       : "text-white"
                   )}
-                  onClick={() => setActiveStepIndex(activeStepIndex + 1)}
+                  onClick={onNextStep}
                 >
                   {step.step}
                 </button>
@@ -51,7 +49,7 @@ const Sidebar = () => {
                   <p
                     className={clsx(
                       "font-normal",
-                      activeStepIndex === step.step
+                      activeStepIndex === step.step - 1
                         ? "text-primary-marine-blue"
                         : "text-white"
                     )}
@@ -61,7 +59,7 @@ const Sidebar = () => {
                   <span
                     className={clsx(
                       "font-bold",
-                      activeStepIndex === step.step
+                      activeStepIndex === step.step - 1
                         ? "text-primary-marine-blue"
                         : "text-white"
                     )}
@@ -74,7 +72,7 @@ const Sidebar = () => {
           </ol>
         </nav>
       </aside>
-    </div>
+    </>
   );
 };
 

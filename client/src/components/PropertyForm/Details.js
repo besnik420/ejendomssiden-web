@@ -20,7 +20,6 @@ const Details = ({ onNextStep, activeStepIndex, handlePreviousStep }) => {
     onSubmit: (values) => {
       const data = { ...formData, ...values };
       setFormData(data);
-      alert(JSON.stringify(data, null, 2));
       onNextStep();
     },
   });
@@ -72,6 +71,7 @@ const Details = ({ onNextStep, activeStepIndex, handlePreviousStep }) => {
             />
             <Input
               label="Bedrooms (*numbers only)"
+              type="number"
               placeholder="e.g. 3"
               name="bedrooms"
               id="bedrooms"
@@ -82,6 +82,7 @@ const Details = ({ onNextStep, activeStepIndex, handlePreviousStep }) => {
           <div className="flex justify-between gap-x-3">
             <Input
               label="Bathrooms (* numbers only)"
+              type="number"
               placeholder="e.g. 2"
               name="bathrooms"
               id="bathrooms"
@@ -118,7 +119,7 @@ const Details = ({ onNextStep, activeStepIndex, handlePreviousStep }) => {
         </div>
         <menu className="flex justify-between">
           <li>
-            <Button className="bg-slate-100 " onClick={handlePreviousStep}>
+            <Button className="bg-slate-100" onClick={handlePreviousStep}>
               Go Back
             </Button>
           </li>
