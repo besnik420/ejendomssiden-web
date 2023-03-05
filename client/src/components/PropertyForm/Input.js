@@ -10,6 +10,7 @@ export const Input = ({
   showRequired = false,
   required = true,
   onChange,
+  onBlur
 }) => {
   return (
     <div className="flex flex-col font-medium w-full">
@@ -33,6 +34,7 @@ export const Input = ({
         onChange={onChange}
         value={value}
         name={name}
+        onBlur={onBlur}
       />
     </div>
   );

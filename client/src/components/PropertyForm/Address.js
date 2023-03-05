@@ -8,7 +8,6 @@ import Map from "./Map";
 
 export const Address = ({ onNextStep }) => {
   const { formData, setFormData } = useContext(FormContext);
-
   const formik = useFormik({
     initialValues: {
       address: "",
@@ -24,6 +23,7 @@ export const Address = ({ onNextStep }) => {
       onNextStep();
     },
   });
+
   return (
     <section className="flex flex-col gap-4 w-full">
       <form onSubmit={formik.handleSubmit}>
@@ -90,7 +90,7 @@ export const Address = ({ onNextStep }) => {
               googleMapsApiKey="AIzaSyBDcPQ768Mg9crvF2aJRAhqvnSeCQClU1o"
               libraries={["places"]}
             >
-              <Map/>
+              <Map address={formik.values.address} />
             </LoadScript>
           </div>
         </div>

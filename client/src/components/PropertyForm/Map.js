@@ -1,17 +1,34 @@
-import React, { useState } from "react";
-import { GoogleMap } from "@react-google-maps/api";
-import { MarkerF } from "@react-google-maps/api";
+import React, { useState, useEffect } from "react";
+import { GoogleMap, Marker, MarkerF } from "@react-google-maps/api";
+import _ from "lodash";
 
 const mapContainerStyle = {
   width: "100%",
   height: "200px",
 };
 
-function Map() {
+function Map({ address }) {
   const [location, setLocation] = useState({
     lat: 55.6760968,
     lng: 12.5683371,
   });
+
+  useEffect(() => {
+    const debouncedGeocode = _.debounce(geocodeAddress, 500);
+    if (address) {
+      debouncedGeocode(address);
+    }
+  }, [address]);
+
+  async function geocodeAddress(address) {
+    const geocoder = new window.google.maps.Geocoder();
+    const { results } = await geocoder.geocode({ address });
+
+    if (results && results.length > 0) {
+      const { lat, lng } = results[0].geometry.location;
+      setLocation({ lat: lat(), lng: lng() });
+    }
+  }
 
   function handleMarkerDragEnd(event) {
     setLocation({
@@ -35,14 +52,16 @@ function Map() {
       }
       mapContainerStyle={mapContainerStyle}
     >
-      <MarkerF
-        position={{
-          lat: location.lat,
-          lng: location.lng,
-        }}
-        draggable={true}
-        onDragEnd={handleMarkerDragEnd}
-      />
+      {location.lat && location.lng && (
+        <MarkerF
+          position={{
+            lat: location.lat,
+            lng: location.lng,
+          }}
+          draggable={true}
+          onDragEnd={handleMarkerDragEnd}
+        />
+      )}
     </GoogleMap>
   );
 }
