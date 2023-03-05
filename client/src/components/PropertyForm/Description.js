@@ -3,9 +3,56 @@ import Input from "./Input";
 import { useFormik } from "formik";
 import { FormContext } from "./PropertyMultiStepForm";
 import { Button } from "./Button";
+import SelectList from "./SelectList";
 
 const Description = ({ onNextStep, handlePreviousStep }) => {
   const { formData, setFormData } = useContext(FormContext);
+  const categoryTypes = [
+    { name: "Select category" },
+    { name: "Open house" },
+    { name: "Home & Business" },
+    { name: "Residential rental" },
+    { name: "Café" },
+    { name: "Retail & Shop" },
+    { name: "Domicile" },
+    { name: "Condominium" },
+    { name: "Profession" },
+    { name: "Regular seat" },
+    { name: "Flex space" },
+    { name: "Hotel & Restaurant" },
+    { name: "Industrial" },
+    { name: "Clinic" },
+    { name: "Office" },
+    { name: "Warehouse & Production" },
+    { name: "Apartment" },
+    { name: "Closed office" },
+    { name: "Terraced house" },
+    { name: "Retail" },
+    { name: "Sold by owner" },
+    { name: "Sold" },
+    { name: "Cottage" },
+    { name: "Supply" },
+    { name: "Rented" },
+    { name: "Workshop" },
+    { name: "Villa" },
+  ];
+  const shownInTypes = [
+    { name: "Select an option" },
+    { name: "Profession" },
+    { name: "Purchase" },
+    { name: "Rent" },
+    { name: "Investment" },
+    { name: "Office hotel" },
+  ];
+  const propertyStatusTypes = [
+    { name: "Select an option" },
+    { name: "Open house" },
+    { name: "Purchase agreement signed" },
+    { name: "New price" },
+    { name: "Sold by owner" },
+    { name: "Sold" },
+    { name: "Rented" },
+  ];
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -16,6 +63,7 @@ const Description = ({ onNextStep, handlePreviousStep }) => {
       shownIn: "",
       category: "",
       garage: "",
+      propertyStatus: "",
     },
     onSubmit: (values) => {
       const data = { ...formData, ...values };
@@ -23,6 +71,15 @@ const Description = ({ onNextStep, handlePreviousStep }) => {
       onNextStep();
     },
   });
+  const handleCategoryTypeChange = (selectedOption) => {
+    formik.setFieldValue("category", selectedOption.name);
+  };
+  const handleShownInTypeChange = (selectedOption) => {
+    formik.setFieldValue("shownIn", selectedOption.name);
+  };
+  const handlePropertyStatusChange = (selectedOption) => {
+    formik.setFieldValue("propertyStatus", selectedOption.name);
+  };
   return (
     <section className="flex flex-col gap-4 w-full">
       <form onSubmit={formik.handleSubmit}>
@@ -84,21 +141,28 @@ const Description = ({ onNextStep, handlePreviousStep }) => {
             />
           </div>
           <div className="flex justify-between gap-x-3">
-            <Input
-              label="Category"
-              placeholder="e.g. ..."
-              name="category"
-              id="category"
-              onChange={formik.handleChange}
-              value={formik.values.category}
+            <SelectList
+              options={categoryTypes}
+              label={"Category"}
+              onChange={handleCategoryTypeChange}
+              name={"category"}
+              id={"category"}
             />
-            <Input
-              label="Shown in"
-              placeholder="e.g. ..."
-              name="shownIn"
-              id="shownIn"
-              onChange={formik.handleChange}
-              value={formik.values.shownIn}
+            <SelectList
+              options={shownInTypes}
+              label={"Shown in"}
+              onChange={handleShownInTypeChange}
+              name={"shownIn"}
+              id={"shownIn"}
+            />
+          </div>
+          <div className="flex justify-between gap-x-3 w-1/2">
+            <SelectList
+              options={propertyStatusTypes}
+              label={"Property Status"}
+              onChange={handlePropertyStatusChange}
+              name={"propertyStatus"}
+              id={"propertyStatus"}
             />
           </div>
         </div>

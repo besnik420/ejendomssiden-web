@@ -1,10 +1,29 @@
 import React, { useContext } from "react";
 import Input from "./Input";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { FormContext } from "./PropertyMultiStepForm";
 import { Button } from "./Button";
-
+import SelectList from "./SelectList";
 const Details2 = ({ onNextStep, handlePreviousStep }) => {
+     const energyClassTypes = [
+       { name: "Select energy type" },
+       { name: "A" },
+       { name: "A+" },
+       { name: "B" },
+       { name: "C" },
+       { name: "D" },
+       { name: "E" },
+       { name: "F" },
+       { name: "G" },
+       { name: "H" },
+     ];
+     const structureType = [
+       { name: "Select structure class" },
+       { name: "Brick" },
+       { name: "Tree" },
+       { name: "Cement" },
+     ];
   const { formData, setFormData } = useContext(FormContext);
   const formik = useFormik({
     initialValues: {
@@ -22,8 +41,15 @@ const Details2 = ({ onNextStep, handlePreviousStep }) => {
       const data = { ...formData, ...values };
       setFormData(data);
       onNextStep();
+       //alert(JSON.stringify(data, null, 2));
     },
   });
+  const handleStructureTypeChange = (selectedOption) => {
+    formik.setFieldValue("structureType", selectedOption.name);
+  };
+    const handleEnergyClassChange = (selectedOption) => {
+      formik.setFieldValue("energyClass", selectedOption.name);
+    };
   return (
     <section className="flex flex-col gap-4 w-full">
       <form onSubmit={formik.handleSubmit} id="form-step-3">
@@ -48,12 +74,12 @@ const Details2 = ({ onNextStep, handlePreviousStep }) => {
             />
           </div>
           <div className="flex justify-between gap-x-3">
-            <Input
-              label="Structure type"
-              placeholder="e.g. ..."
+            <SelectList
+              options={structureType}
+              label={"Structure type"}
               name="structureType"
               id="structureType"
-              onChange={formik.handleChange}
+              onChange={handleStructureTypeChange}
               value={formik.values.structureType}
             />
             <Input
@@ -84,13 +110,12 @@ const Details2 = ({ onNextStep, handlePreviousStep }) => {
             />
           </div>
           <div className="flex justify-between gap-x-3">
-            <Input
-              label="Energy class"
-              placeholder="e.g. ..."
+            <SelectList
+              options={energyClassTypes}
+              label={"Energy Class"}
               name="energyClass"
               id="energyClass"
-              onChange={formik.handleChange}
-              value={formik.values.energyClass}
+              onChange={handleEnergyClassChange}
             />
             <Input
               label="Energy index in kWh/m2a"
@@ -105,8 +130,7 @@ const Details2 = ({ onNextStep, handlePreviousStep }) => {
             Owner/Broker notes (* not visible in front end)
           </label>
           <textarea
-            cols={80}
-            className="border border-neutral-light-gray rounded px-4 py-2 text-sm
+            className="w-full border border-neutral-light-gray rounded px-4 py-2 text-sm
           focus:outline-none focus:ring-1 focus:ring-bg-blue-100 font-medium"
             name="ownerNotes"
             id="ownerNotes"

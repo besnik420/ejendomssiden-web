@@ -3,24 +3,44 @@ import Input from "./Input";
 import { useFormik } from "formik";
 import { FormContext } from "./PropertyMultiStepForm";
 import { Button } from "./Button";
+import SelectList from "./SelectList";
 
-const Media = ({ onNextStep, handlePreviousStep }) => {
-  
+const Media = ({ onNextStep, handlePreviousStep }) => {  
   const { formData, setFormData } = useContext(FormContext);
+  const videoFromTypes =[
+    {name: "Select an option"},
+    {name: "Youtube"},
+    {name: "Vimeo"},
+  ]
   const formik = useFormik({
     initialValues: {
-    imgFileName: "",
     videoFrom: '',
     videoURL: '',
-    virtualTour: ''
+    virtualTour: '',
+    imgFilesNames: [],
     },
     onSubmit: (values) => {
       const data = { ...formData, ...values };
       setFormData(data);
-      alert(JSON.stringify(data, null, 2));
+      //alert(JSON.stringify(data, null, 2));
       onNextStep();
     },
   });
+    const handleVideoFromTypeChange = (selectedOption) => {
+      formik.setFieldValue("videoFrom", selectedOption.name);
+    };
+    const handleImgName = (e)=>{
+        const fileNames = [];
+        const formData = new FormData();
+        for (let i = 0; i < e.target.files.length; i++) {
+          fileNames.push(e.target.files[i].name);
+          formData.append(
+            e.target.files[i].name,
+            e.target.files[i]
+          );
+        }        
+      formik.setFieldValue("imgFilesNames", fileNames);
+    }
   return (
     <section className="flex flex-col gap-4 w-full">
       <h2>The advertisement's images</h2>
@@ -36,16 +56,16 @@ const Media = ({ onNextStep, handlePreviousStep }) => {
               type="file"
               className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full 
               file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-50"
+              onChange={handleImgName} multiple="multiple"
             />
           </div>
           <div className="flex justify-between gap-x-3">
-            <Input
-              label="Video from"
-              placeholder="e.g. 2"
-              id="videoFrom"
-              name="videoFrom"
-              onChange={formik.handleChange}
-              value={formik.values.videoFrom}
+            <SelectList
+              options={videoFromTypes}
+              id={"videoFrom"}
+              name={"videoFrom"}
+              label={"Video from"}
+              onChange={handleVideoFromTypeChange}
             />
             <Input
               label="Add Video ID:"

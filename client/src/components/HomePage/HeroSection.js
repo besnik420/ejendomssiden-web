@@ -47,12 +47,17 @@ const HeroSection = () => {
       style={{ backgroundImage: `url("${featuredImages[currentIndex]}")` }}
     >
       <Navbar />
-      
+
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-lg">
-          <h1 className="mb-5 text-5xl font-bold">Find din drømmebolig</h1>
-          <p className="mb-5">Vi forbinder mennesker og ejendomme perfekt</p>
+          <h1 className="mb-5 text-5xl font-bold">
+            Lorem ipsum dolor sit amet
+          </h1>
+          <p className="mb-5">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.
+          </p>
 
           <div className="form-control">
             <div className="input-group">
