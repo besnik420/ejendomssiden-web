@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
+import { LoadScript } from "@react-google-maps/api";
 import Input from "./Input";
 import { useFormik } from "formik";
 import { FormContext } from "./PropertyMultiStepForm";
 import { Button } from "./Button";
+import Map from "./Map";
 
 export const Address = ({ onNextStep }) => {
   const { formData, setFormData } = useContext(FormContext);
@@ -47,7 +49,7 @@ export const Address = ({ onNextStep }) => {
               value={formik.values.region}
             />
           </div>
-          <div className="flex justify-between gap-x-3">
+          <div className="flex justify-between gap-x-3 mb-2">
             <Input
               label="Town"
               placeholder="e.g. ..."
@@ -65,7 +67,7 @@ export const Address = ({ onNextStep }) => {
               value={formik.values.territory}
             />
           </div>
-          <div className="flex justify-between gap-x-3">
+          {/* <div className="flex justify-between gap-x-3">
             <Input
               label="Zip Code"
               placeholder="e.g. ..."
@@ -82,6 +84,14 @@ export const Address = ({ onNextStep }) => {
               onChange={formik.handleChange}
               value={formik.values.country}
             />
+          </div> */}
+          <div>
+            <LoadScript
+              googleMapsApiKey="AIzaSyBDcPQ768Mg9crvF2aJRAhqvnSeCQClU1o"
+              libraries={["places"]}
+            >
+              <Map/>
+            </LoadScript>
           </div>
         </div>
         <menu className="flex justify-end">
