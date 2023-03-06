@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { FormContext } from "./PropertyMultiStepForm";
 import { Button } from "./Button";
 import Map from "./Map";
-
+import Autocomplete from 'react-google-autocomplete';
 export const Address = ({ onNextStep }) => {
   const { formData, setFormData } = useContext(FormContext);
   const formik = useFormik({
@@ -31,15 +31,33 @@ export const Address = ({ onNextStep }) => {
           <h2>The location of the ad</h2>
           <p>Please provide your address, region and territory.</p>
           <div className="flex justify-between gap-x-3">
-            <Input
+            {/* <Input
               label="Address"
               placeholder="e.g. Stephen King"
               id="address"
               name="address"
               onChange={formik.handleChange}
               value={formik.values.address}
-            />
-
+            /> */}
+            <div>
+              <label className="font-medium text-sm text-primary-marine-blue block mt-2">
+                Address
+              </label>
+              <Autocomplete
+                apiKey="AIzaSyBDcPQ768Mg9crvF2aJRAhqvnSeCQClU1o"
+                onPlaceSelected={(place) => {
+                  formik.setFieldValue("address", place.formatted_address);
+                }}
+                types={["address"]}
+                componentrestrictions={{ country: "US" }}
+                value={formik.values.address}
+                onChange={(e) =>
+                  formik.setFieldValue("address", e.target.value)
+                }
+                className="border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all 
+              focus:outline-none focus:ring-1 focus:ring-bg-blue-100"
+              />
+            </div>
             <Input
               label="Region"
               id="region"
