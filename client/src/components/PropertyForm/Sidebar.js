@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import clsx from "clsx";
 
 const steps = [
@@ -23,9 +23,9 @@ const steps = [
     title: "Media",
   },
 ];
-const Sidebar = ({ currentStep, handleNextStep }) => {
+const Sidebar = ({onNextStep, activeStepIndex}) => {
   return (
-    <div>
+    <>
       <aside className="bg-sidebar-image-mobile h-[13rem] lg:h-[32rem] bg-cover bg-no-repeat lg:rounded-lg lg:bg-sidebar-image-desktop">
         <nav>
           <ol className="flex justify-center pt-8 gap-4 lg:flex-col lg:w-60 lg:mx-autor">
@@ -37,11 +37,11 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
                 <button
                   className={clsx(
                     "px-3 py-2 border border-white inline-flex rounded-full leading-none font-medium w-min h-min transition-colors duration-[400ms]",
-                    currentStep === step.step
-                      ? "bg-primary-light-blue text-primary-marine-blue border-primary-light-blue"
+                    activeStepIndex === step.step - 1
+                      ? "bg-slate-50 text-primary-marine-blue border-primary-light-blue"
                       : "text-white"
                   )}
-                  onClick={() => handleNextStep(step.step)}
+                  onClick={onNextStep}
                 >
                   {step.step}
                 </button>
@@ -49,7 +49,7 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
                   <p
                     className={clsx(
                       "font-normal",
-                      currentStep === step.step
+                      activeStepIndex === step.step - 1
                         ? "text-primary-marine-blue"
                         : "text-white"
                     )}
@@ -59,7 +59,7 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
                   <span
                     className={clsx(
                       "font-bold",
-                      currentStep === step.step
+                      activeStepIndex === step.step - 1
                         ? "text-primary-marine-blue"
                         : "text-white"
                     )}
@@ -72,8 +72,8 @@ const Sidebar = ({ currentStep, handleNextStep }) => {
           </ol>
         </nav>
       </aside>
-    </div>
+    </>
   );
-}
+};
 
-export default Sidebar
+export default Sidebar;
