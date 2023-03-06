@@ -22,14 +22,19 @@ function Map({ address }) {
 
   async function geocodeAddress(address) {
     const geocoder = new window.google.maps.Geocoder();
-    const { results } = await geocoder.geocode({ address });
-
-    if (results && results.length > 0) {
-      const { lat, lng } = results[0].geometry.location;
-      setLocation({ lat: lat(), lng: lng() });
-    }
+    geocoder.geocode({ address: address }, (results, status) => {
+      if (status === "OK" && results[0]) {
+        const { lat, lng } = results[0].geometry.location;
+        setLocation({ lat: lat(), lng: lng() });
+      } else {
+        console.log(
+          "Geocode was not successful for the following address",
+          address
+        );
+        // handle error here
+      }
+    });
   }
-
   function handleMarkerDragEnd(event) {
     setLocation({
       lat: event.latLng.lat(),

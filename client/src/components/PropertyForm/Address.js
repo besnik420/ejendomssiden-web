@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { LoadScript } from "@react-google-maps/api";
 import Input from "./Input";
 import { useFormik } from "formik";
@@ -8,6 +8,7 @@ import Map from "./Map";
 import Autocomplete from 'react-google-autocomplete';
 export const Address = ({ onNextStep }) => {
   const { formData, setFormData } = useContext(FormContext);
+  const [finalAddress, setFinalAddress] = useState('');
   const formik = useFormik({
     initialValues: {
       address: "",
@@ -54,8 +55,9 @@ export const Address = ({ onNextStep }) => {
                 onChange={(e) =>
                   formik.setFieldValue("address", e.target.value)
                 }
+                onBlur={(e)=> setFinalAddress(e.target.value)}
                 className="border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all 
-              focus:outline-none focus:ring-1 focus:ring-bg-blue-100"
+              focus:outline-none focus:ring-1 focus:ring-bg-blue-100 font-medium"
               />
             </div>
             <Input
@@ -108,7 +110,7 @@ export const Address = ({ onNextStep }) => {
               googleMapsApiKey="AIzaSyBDcPQ768Mg9crvF2aJRAhqvnSeCQClU1o"
               libraries={["places"]}
             >
-              <Map address={formik.values.address} />
+              <Map address={finalAddress} />
             </LoadScript>
           </div>
         </div>
