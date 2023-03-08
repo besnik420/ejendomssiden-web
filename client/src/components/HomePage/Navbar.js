@@ -1,13 +1,25 @@
 import React from 'react'
+import { useDispatch } from "react-redux";
 import Logo from "../HomePage/assets/HeroSection/Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faChevronDown, faChevronRight, faBarsStaggered, faUser } from "@fortawesome/free-solid-svg-icons";
+import {faChevronDown, faChevronRight, faBarsStaggered, faUser, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Register from './Register';
 import Login from "./Login";
+import Cookies from "js-cookie";
+import { logOut } from '../../features/auth/authSlice';
+
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const cookie = Cookies.get("token");
+  const dispatch = useDispatch();
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    dispatch(logOut());
+  };
+
   return (
-    <div className="navbar bg-slate-100">
+    <div className="navbar absolute top-0 ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -15,7 +27,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-slate-200  rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-slate-200  rounded-box w-52 text-white"
           >
             <li>
               <a className="active:bg-blue-600">Køb</a>
@@ -35,7 +47,9 @@ const Navbar = () => {
               </ul>
             </li>
             <li>
-              <a className="active:bg-blue-600">Sælg</a>
+              <Link className="active:bg-blue-600" to="/RegisterProperty">
+                Sælg
+              </Link>
             </li>
           </ul>
         </div>
@@ -44,7 +58,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 ">
+        <ul className="menu menu-horizontal px-1 text-white">
           <li>
             <a className="active:bg-blue-600">Køb</a>
           </li>
@@ -53,7 +67,7 @@ const Navbar = () => {
               Leje
               <FontAwesomeIcon icon={faChevronDown} />
             </a>
-            <ul className="p-2 bg-slate-200 mt-3">
+            <ul className="p-2 bg-slate-200 mt-3 text-black">
               <li>
                 <a className="active:bg-blue-600">Submenu 1</a>
               </li>
@@ -63,7 +77,9 @@ const Navbar = () => {
             </ul>
           </li>
           <li>
-            <a className="active:bg-blue-600">Sælg</a>
+            <Link className="active:bg-blue-600" to="/RegisterProperty">
+              Sælg
+            </Link>
           </li>
           <li>
             <a className="active:bg-blue-600">Fagfolk</a>
@@ -78,12 +94,12 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="dropdown dropdown-bottom dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost m-1">
+          <label tabIndex={0} className="btn btn-ghost m-1 text-white">
             <FontAwesomeIcon icon={faUser} />
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 text-black"
           >
             <li>
               <label
@@ -93,14 +109,26 @@ const Navbar = () => {
                 Registrer
               </label>
             </li>
-            <li>
-              <label
-                className="cursor-pointer active:bg-blue-600"
-                htmlFor="my-modal-Login"
-              >
-                Login
-              </label>
-            </li>
+            {cookie ? (
+              <li>
+                <button
+                  className="cursor-pointer active:bg-blue-600"
+                  onClick={handleLogout}
+                >
+                  Logout
+                  <FontAwesomeIcon icon={faRightFromBracket} />
+                </button>
+              </li>
+            ) : (
+              <li>
+                <label
+                  className="cursor-pointer active:bg-blue-600"
+                  htmlFor="my-modal-Login"
+                >
+                  Login
+                </label>
+              </li>
+            )}
           </ul>
         </div>
 
@@ -114,6 +142,6 @@ const Navbar = () => {
       <Login />
     </div>
   );
-}
+};
 
 export default Navbar

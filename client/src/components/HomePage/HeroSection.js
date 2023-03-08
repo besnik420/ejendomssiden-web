@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Image1 from "../HomePage/assets/HeroSection/Building-1.jpg";
 import Image2 from "../HomePage/assets/HeroSection/Building-2.jpg";
 import Image3 from "../HomePage/assets/HeroSection/Building-3.jpg";
+import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
   faChevronLeft,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+
 
 const HeroSection = () => {
   // Initialize a variable count to keep track of the index of the current image
@@ -21,7 +23,7 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       handleOnNextClick();
-    }, 3000);
+    }, 5000);
     // Clean up function that is called before the component is unmounted
     return () => clearInterval(interval);
   }, [currentIndex]);
@@ -44,11 +46,18 @@ const HeroSection = () => {
       className="hero min-h-screen"
       style={{ backgroundImage: `url("${featuredImages[currentIndex]}")` }}
     >
+      <Navbar />
+
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-lg">
-          <h1 className="mb-5 text-5xl font-bold">Find din drømmebolig</h1>
-          <p className="mb-5">Vi forbinder mennesker og ejendomme perfekt</p>
+          <h1 className="mb-5 text-5xl font-bold">
+            Lorem ipsum dolor sit amet
+          </h1>
+          <p className="mb-5">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.
+          </p>
 
           <div className="form-control">
             <div className="input-group">
